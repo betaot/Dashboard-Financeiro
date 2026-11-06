@@ -3,24 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Movimentação</title>
 </head>
 <body>
     <header>
         <nav>
             <li class="nav-bar">
-                <ul><a href="index.html">dashboard</a></ul>
-                <ul><a href="pages/movimentacao.html">Movimentaçao</a></ul>
-                <ul><a href="pages/meta.html">Meta Financeira</a></ul>
+                <ul><a href="/../index.html">dashboard</a></ul>
+                <ul><a href="movimentacao.html">Movimentaçao</a></ul>
+                <ul><a href="meta.html">Meta Financeira</a></ul>
             </li>
         </nav>
     </header>
     <main>
       <h1>Movimentação</h1>
       <section>
-        <h2>nova Movimentação</h2>
+        <a href="#">
+          <button type="button">Nova Movimentação</button>
+        </a>
       </section>
+      <section>
+        <label for="tipo">Tipo</label>
+        <select name="tipo" id="tipo">
+          <option value="" disabled selected>Selecione o tipo</option>
+          <option value="receita">Receita</option>
+          <select value="despesa">Despesa</select>
+        
+        <label for="categoria">Categoria</label>
+        <select name="categoria" id="categoria">
+          <option value="" disabled selected>Seleciona o tipo</option>
+          <option value="categoria 1">Categoria 1</option>
+          <option value="categoria 2">Categoria 2</option>
+          <option value="categoria 3">Categoria 3</option>
+        </select>
+
+        <label for="periodo">Período</label>
+        <select name="periodo" id="periodo">
+          <option value="" disabled selected>Selecione o período</option>
+        </select>
+      </section>
+      <table>
+        <thead>
+          <th>Data</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>Tipo</th>
+          <th>Valor</th>
+          <th>Ações</th>
+        </thead>
+      </table>
     </main>
     <footer></footer>
     <script href="script.js"></script>
