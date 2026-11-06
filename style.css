@@ -9,4 +9,6 @@ table {
   border-collapse:collapse;
 }
 
-main
+main {
+  background-color: #3F7D58;
+}
