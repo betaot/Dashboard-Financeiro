@@ -1,22 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Dashbord financeiro</title>
-
-    <nav class="navbar">
-        <ul><a href="#">dashboard</a></ul>
-        <ul><a href="#">Movimentaçao</a></ul>
-        <ul><a href="#">Meta Financeira</a></ul>
-    </nav>
 </head>
 <body>
-    <h1>Dashbord </h1>
-    <h2>Dashbord</h2>
-    <h2>Movimentaçao</h2>
-    <h2>Meta Financeira</h2>
-    <
+    <header>
+        <nav>
+            <li class="nav-bar">
+                <ul><a href="index.html">dashboard</a></ul>
+                <ul><a href="pages/movimentacao.html">Movimentaçao</a></ul>
+                <ul><a href="pages/meta.html">Meta Financeira</a></ul>
+            </li>
+        </nav>
+    </header>
 
+    <main>
+        <h1>Dashboard</h1>
+        <section>
+            <h2>Receitas</h2>
+            <p id="ganhos"></p>
+            <h2>Despesas</h2>
+            <p id="perdas"></p>
+            <h2>Saldo disponível</h2>
+        </section>
+
+        <section class="grafico-dashboard">
+            <article class="card-grafico">
+                <h2>Despesas por categoria</h2>
+                <div class="grafico-placeholder" role="img" aria-label="Gráfico de despesas por categoria"></div>
+                <ul class="legenda-grafico">
+                    <li>Categoria 1</li>
+                    <li>Categoria 2</li>
+                    <li>Categoria 3</li>
+                </ul>
+            </article>
+
+        </section>
+
+        <section>
+        <h2>meta fincanceira</h2>
+        
+        <input type="text" id="meta" name="meta">
+        <p id="falta"></p>
+        <progress value="50" max="100"><p id="porcentagem"></p></progress>
+        </section>
+        <table>
+            <thead>
+                <th>
+                    <td>data</td>
+                    <td>descri</td>
+                    <td>categoria</td>
+                    <td>valor</td>
+                </th>
+            </thead>
+        </table>
+    </main>
+    <footer>
+
+    </footer>
+    <script href="script.js"></script>
 </body>
 </html>
