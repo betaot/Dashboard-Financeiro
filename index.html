@@ -4,27 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Dashbord financeiro</title>
+    <title>Dashboard financeiro</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <li class="nav-bar">
-                <ul><a href="index.html">dashboard</a></ul>
-                <ul><a href="pages/movimentacao.html">Movimentaçao</a></ul>
-                <ul><a href="pages/meta.html">Meta Financeira</a></ul>
-            </li>
-        </nav>
-    </header>
+    <aside class="sidebar">
+        <a href="index.html" class="logo">
+            <svg viewBox="0 0 36 36" aria-hidden="true">
+                <rect width="36" height="36" rx="8" fill="#EFEFEF"/>
+                <rect x="7" y="18" width="6" height="11" rx="1.5" fill="#3F7D58"/>
+                <rect x="15" y="11" width="6" height="18" rx="1.5" fill="#EF9651"/>
+                <rect x="23" y="6" width="6" height="23" rx="1.5" fill="#EC5228"/>
+            </svg>
+            <span>Dashboard<br>Financeiro</span>
+        </a>
 
+        <nav>
+            <ul class="nav-bar">
+                <li><a href="index.html" class="ativo">Dashboard</a></li>
+                <li><a href="pages/movimentacao.html">Movimentação</a></li>
+                <li><a href="pages/meta.html">Meta Financeira</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="conteudo">
     <main>
         <h1>Dashboard</h1>
+
         <section class="financeiro">
             <h2>Receitas</h2>
             <p id="ganhos"></p>
             <h2>Despesas</h2>
             <p id="perdas"></p>
             <h2>Saldo disponível</h2>
+            <p id="saldo"></p>
         </section>
 
         <section class="grafico-dashboard">
@@ -37,30 +50,35 @@
                     <li>Categoria 3</li>
                 </ul>
             </article>
-
         </section>
 
         <section>
-        <h2>meta fincanceira</h2>
-        <label id="meta">digite a meta</label>
-        <input type="text" id="meta" name="meta">
-        <p id="falta"></p>
-        <progress value="50" max="100"><p id="porcentagem"></p></progress>
+            <h2>Meta financeira</h2>
+            <label for="meta">Digite a meta</label>
+            <input type="text" id="meta" name="meta">
+            <p id="falta"></p>
+            <progress value="50" max="100"></progress>
+            <p id="porcentagem"></p>
         </section>
+
         <table>
             <thead>
-                <th>
-                    <td>data</td>
-                    <td>descri</td>
-                    <td>categoria</td>
-                    <td>valor</td>
-                </th>
+                <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                </tr>
             </thead>
+            <tbody id="lista-movimentacoes"></tbody>
         </table>
     </main>
-    <footer>
 
+    <footer>
+        <p>Dashboard Financeiro Pessoal</p>
     </footer>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
