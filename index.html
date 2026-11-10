@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
     <title>Dashboard financeiro</title>
 </head>
 <body>
     <aside class="sidebar">
         <a href="index.html" class="logo">
-            <svg viewBox="0 0 36 36" aria-hidden="true">
-                <rect width="36" height="36" rx="8" fill="#EFEFEF"/>
-                <rect x="7" y="18" width="6" height="11" rx="1.5" fill="#3F7D58"/>
-                <rect x="15" y="11" width="6" height="18" rx="1.5" fill="#EF9651"/>
-                <rect x="23" y="6" width="6" height="23" rx="1.5" fill="#EC5228"/>
-            </svg>
+            <img src="images/logo.svg" alt="" width="40" height="40">
             <span>Dashboard<br>Financeiro</span>
         </a>
 
@@ -28,55 +24,53 @@
     </aside>
 
     <div class="conteudo">
-    <main>
-        <h1>Dashboard</h1>
+        <main>
+            <h1>Dashboard</h1>
 
-        <section class="financeiro">
-            <h2>Receitas</h2>
-            <p id="ganhos"></p>
-            <h2>Despesas</h2>
-            <p id="perdas"></p>
-            <h2>Saldo disponível</h2>
-            <p id="saldo"></p>
-        </section>
+            <section class="financeiro">
+                <h2>Receitas</h2>
+                <p id="ganhos"></p>
+                <h2>Despesas</h2>
+                <p id="perdas"></p>
+                <h2>Saldo disponível</h2>
+                <p id="saldo"></p>
+            </section>
 
-        <section class="grafico-dashboard">
-            <article class="card-grafico">
-                <h2>Despesas por categoria</h2>
-                <div class="grafico-placeholder" role="img" aria-label="Gráfico de despesas por categoria"></div>
-                <ul class="legenda-grafico">
-                    <li>Categoria 1</li>
-                    <li>Categoria 2</li>
-                    <li>Categoria 3</li>
-                </ul>
-            </article>
-        </section>
+            <section class="grafico-dashboard">
+                <article class="card-grafico">
+                    <h2>Despesas por categoria</h2>
+                    <div class="grafico-placeholder" role="img" aria-label="Gráfico de despesas por categoria"></div>
+                    <ul class="legenda-grafico">
+                        <li>Categoria 1</li>
+                        <li>Categoria 2</li>
+                        <li>Categoria 3</li>
+                    </ul>
+                </article>
+            </section>
 
-        <section>
-            <h2>Meta financeira</h2>
-            <label for="meta">Digite a meta</label>
-            <input type="text" id="meta" name="meta">
-            <p id="falta"></p>
-            <progress value="50" max="100"></progress>
-            <p id="porcentagem"></p>
-        </section>
+            <section>
+                <h2>Meta financeira</h2>
+                <p id="falta"></p>
+                <progress value="50" max="100"></progress>
+                <p id="porcentagem"></p>
+            </section>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                    <th>Categoria</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody id="lista-movimentacoes"></tbody>
-        </table>
-    </main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-movimentacoes"></tbody>
+            </table>
+        </main>
 
-    <footer>
-        <p>Dashboard Financeiro Pessoal</p>
-    </footer>
+        <footer>
+            <p>Dashboard Financeiro Pessoal</p>
+        </footer>
     </div>
 
     <script src="script.js"></script>

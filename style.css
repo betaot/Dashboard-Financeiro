@@ -37,7 +37,7 @@ body {
   text-decoration: none;
 }
 
-.logo svg {
+.logo img {
   width: 36px;
   height: 36px;
   flex-shrink: 0;
