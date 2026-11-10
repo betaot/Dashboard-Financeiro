@@ -3,54 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../style.css">
     <title>Meta financeira</title>
 </head>
 <body>
-    <header>
+    <aside class="sidebar">
+        <a href="../index.html" class="logo">
+            <img src="../images/logo.svg" alt="" width="40" height="40">
+            <span>Dashboard<br>Financeiro</span>
+        </a>
+
         <nav>
-            <li class="nav-bar">
-                <ul><a href="../index.html">dashboard</a></ul>
-                <ul><a href="movimentacao.html">Movimentaçao</a></ul>
-                <ul><a href="meta.html">Meta Financeira</a></ul>
-            </li>
+            <ul class="nav-bar">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="movimentacao.html">Movimentação</a></li>
+                <li><a href="meta.html" class="ativo">Meta Financeira</a></li>
+            </ul>
         </nav>
-    </header>
-    <main>
-      <h1>Meta financeira</h1>
-      <h2>Cada passo conta para o seu futuro</h2>
-      <p>Acompanhe sua  reserva e mantenha seu objetivo no caminho certo.</p>
-      <section class="meta">
-        <h2>Reserva de emergencia</h2>
-        
-        
-        <p>Valor guardado</p>
-        <h2 id="guardado"></h2>
+    </aside>
 
-        <p>Valor-alvo</p>
-        <h2 id="alvo"></h2>
+    <div class="conteudo">
+        <main>
+            <h1>Meta financeira</h1>
+            <h2>Cada passo conta para o seu futuro</h2>
+            <p>Acompanhe sua reserva e mantenha seu objetivo no caminho certo.</p>
 
-        <p>Falta guardar</p>
-        <h2 id="falta"></h2>
-    
-        
-        <a href="#">
-          <button type="button">Editar meta</button>
-        </a>
-        <a href="">
-          <button type="button">Retirar valor</button>
-        </a>
-        <a href="#">
-          <button type="button">Adicionar valor</button>
-        </a>
-      </section>
-      <aside>
-        <h2>Histórico de depósitos</h2>
-      </aside>
-      <aside>
-        <h2>Seu planejamento</h2>
-      </aside>
-    </main>
-    <footer></footer>
-    <script href="script.js"></script>
-  </body>
+            <section class="meta">
+                <h2>Reserva de emergência</h2>
+
+                <div class="valores">
+                    <div>
+                        <p>Valor guardado</p>
+                        <p class="valor" id="guardado"></p>
+                    </div>
+                    <div>
+                        <p>Valor-alvo</p>
+                        <p class="valor" id="alvo"></p>
+                    </div>
+                    <div>
+                        <p>Falta guardar</p>
+                        <p class="valor" id="falta"></p>
+                    </div>
+                </div>
+
+                <div class="acoes">
+                    <button type="button" id="btn-editar">Editar meta</button>
+                    <button type="button" id="btn-retirar">Retirar valor</button>
+                    <button type="button" id="btn-adicionar">Adicionar valor</button>
+                </div>
+            </section>
+
+            <aside>
+                <h2>Histórico de depósitos</h2>
+            </aside>
+
+            <aside>
+                <h2>Seu planejamento</h2>
+            </aside>
+        </main>
+
+        <footer>
+            <p>Dashboard Financeiro Pessoal</p>
+        </footer>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

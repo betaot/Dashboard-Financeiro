@@ -3,64 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
-    <title>Dashbord financeiro</title>
+    <title>Dashboard financeiro</title>
 </head>
 <body>
-    <header>
+    <aside class="sidebar">
+        <a href="index.html" class="logo">
+            <img src="images/logo.svg" alt="" width="40" height="40">
+            <span>Dashboard<br>Financeiro</span>
+        </a>
+
         <nav>
-            <li class="nav-bar">
-                <ul><a href="index.html">dashboard</a></ul>
-                <ul><a href="pages/movimentacao.html">Movimentaçao</a></ul>
-                <ul><a href="pages/meta.html">Meta Financeira</a></ul>
-            </li>
+            <ul class="nav-bar">
+                <li><a href="index.html" class="ativo">Dashboard</a></li>
+                <li><a href="pages/movimentacao.html">Movimentação</a></li>
+                <li><a href="pages/meta.html">Meta Financeira</a></li>
+            </ul>
         </nav>
-    </header>
+    </aside>
 
-    <main>
-        <h1>Dashboard</h1>
-        <section class="financeiro">
-            <h2>Receitas</h2>
-            <p id="ganhos"></p>
-            <h2>Despesas</h2>
-            <p id="perdas"></p>
-            <h2>Saldo disponível</h2>
-        </section>
+    <div class="conteudo">
+        <main>
+            <h1>Dashboard</h1>
 
-        <section class="grafico-dashboard">
-            <article class="card-grafico">
-                <h2>Despesas por categoria</h2>
-                <div class="grafico-placeholder" role="img" aria-label="Gráfico de despesas por categoria"></div>
-                <ul class="legenda-grafico">
-                    <li>Categoria 1</li>
-                    <li>Categoria 2</li>
-                    <li>Categoria 3</li>
-                </ul>
-            </article>
+            <section class="financeiro">
+                <h2>Receitas</h2>
+                <p id="ganhos"></p>
+                <h2>Despesas</h2>
+                <p id="perdas"></p>
+                <h2>Saldo disponível</h2>
+                <p id="saldo"></p>
+            </section>
 
-        </section>
+            <section class="grafico-dashboard">
+                <article class="card-grafico">
+                    <h2>Despesas por categoria</h2>
+                    <div class="grafico-placeholder" role="img" aria-label="Gráfico de despesas por categoria"></div>
+                    <ul class="legenda-grafico">
+                        <li>Categoria 1</li>
+                        <li>Categoria 2</li>
+                        <li>Categoria 3</li>
+                    </ul>
+                </article>
+            </section>
 
-        <section>
-        <h2>meta fincanceira</h2>
-        <label id="meta">digite a meta</label>
-        <input type="text" id="meta" name="meta">
-        <p id="falta"></p>
-        <progress value="50" max="100"><p id="porcentagem"></p></progress>
-        </section>
-        <table>
-            <thead>
-                <th>
-                    <td>data</td>
-                    <td>descri</td>
-                    <td>categoria</td>
-                    <td>valor</td>
-                </th>
-            </thead>
-        </table>
-    </main>
-    <footer>
+            <section>
+                <h2>Meta financeira</h2>
+                <p id="falta"></p>
+                <progress value="50" max="100"></progress>
+                <p id="porcentagem"></p>
+            </section>
 
-    </footer>
-    <script href="script.js"></script>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-movimentacoes"></tbody>
+            </table>
+        </main>
+
+        <footer>
+            <p>Dashboard Financeiro Pessoal</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
