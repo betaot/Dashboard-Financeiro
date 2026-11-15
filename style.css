@@ -1,3 +1,14 @@
+/* ícones do menu, dos cards e do botão (ficam na cor do texto onde são usados) */
+:root {
+  --ic-painel: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='3' width='7' height='9' rx='1'/><rect x='14' y='3' width='7' height='5' rx='1'/><rect x='14' y='12' width='7' height='9' rx='1'/><rect x='3' y='16' width='7' height='5' rx='1'/></svg>");
+  --ic-troca: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 3 4 7l4 4'/><path d='M4 7h16'/><path d='m16 21 4-4-4-4'/><path d='M20 17H4'/></svg>");
+  --ic-alvo: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><circle cx='12' cy='12' r='6'/><circle cx='12' cy='12' r='2'/></svg>");
+  --ic-subida: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>");
+  --ic-descida: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 17 13.5 8.5 8.5 13.5 2 7'/><polyline points='16 17 22 17 22 11'/></svg>");
+  --ic-carteira: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4'/><path d='M4 6v12c0 1.1.9 2 2 2h14v-4'/><path d='M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z'/></svg>");
+  --ic-mais: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round'><path d='M12 5v14M5 12h14'/></svg>");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,25 +20,43 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  background: #3F7D58;
+  background-color: #3F7D58;
+  /* brilho claro discreto no canto + verde que escurece um pouco para baixo */
+  background-image:
+    radial-gradient(900px 500px at 100% 0%, rgba(255, 255, 255, 0.08), transparent 70%),
+    linear-gradient(180deg, #3F7D58 0%, #37704D 100%);
+  background-repeat: no-repeat;
   color: #EFEFEF;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Montserrat", "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.5; /* espaçamento das linhas */
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #EF9651;
+  color: #222222;
+}
+
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 3px solid #EF9651;
+  outline-offset: 2px;
 }
 
 /* ---------- Barra lateral ---------- */
 .sidebar {
-  width: 240px;
+  width: 260px;
   flex-shrink: 0;
   position: sticky;
   top: 0;
-  align-self: flex-start;
+  align-self: flex-start; 
   height: 100vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 28px 26px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  padding: 28px 20px;
+  background: linear-gradient(180deg, #336B49 0%, #2A5A3E 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
 }
 
 .logo {
@@ -43,7 +72,7 @@ body {
 }
 
 .sidebar nav {
-  margin-top: 56px;
+  margin-top: 48px;
 }
 
 .nav-bar {
@@ -54,26 +83,51 @@ body {
 }
 
 .nav-bar a {
-  display: block;
-  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
   color: #EFEFEF;
   text-decoration: none;
+  font-size: 0.95rem;
   font-weight: 600;
   border-left: 4px solid transparent;
-  border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
+  border-radius: 10px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
+/* ícone antes de cada item (muda com o link) */
+.nav-bar a::before, .card-resumo h2::before, .btn-destaque::before {
+  content: "";
+  flex-shrink: 0;
+  background: currentColor;
+  -webkit-mask: var(--icone) center / contain no-repeat;
+  mask: var(--icone) center / contain no-repeat;
+}
+
+.nav-bar a::before {
+  width: 20px;
+  height: 20px;
+  transition: background 0.2s;
+}
+
+.nav-bar a[href$="index.html"] { --icone: var(--ic-painel); }
+.nav-bar a[href$="movimentacao.html"] { --icone: var(--ic-troca); }
+.nav-bar a[href$="meta.html"] { --icone: var(--ic-alvo); }
+
 .nav-bar a:hover, .nav-bar a:focus-visible {
-  background: rgba(239, 239, 239, 0.12);
-  color: #EF9651;
-  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.nav-bar a:hover::before, .nav-bar a.ativo::before {
+  background: #EF9651;
 }
 
 .nav-bar a.ativo {
-  background: rgba(239, 239, 239, 0.12);
+  background: rgba(255, 255, 255, 0.14);
   border-left-color: #EF9651;
-  color: #EF9651;
+  color: #FFFFFF;
 }
 
 /* ---------- Conteúdo ---------- */
@@ -89,7 +143,7 @@ main {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 32px 20px 48px;
+  padding: 36px 24px 48px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -97,7 +151,9 @@ main {
 
 main > h1 {
   font-size: 2rem;
-  color: #EFEFEF;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
 }
 
 main > h1::after {
@@ -110,12 +166,16 @@ main > h1::after {
   background: #EF9651;
 }
 
+main > p {
+  color: #FFFFFF;
+}
+
 /* ---------- Cards ---------- */
-main > section, .card-resumo, .card-grafico, .card-meta, .duplo > aside, table {
+main > section, .card-resumo, .card-grafico, .card-meta, .duplo > aside {
   background: #EFEFEF;
   color: #222222;
-  border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.14);
 }
 
 main > section, .card-resumo, .card-grafico, .card-meta, .duplo > aside {
@@ -124,11 +184,20 @@ main > section, .card-resumo, .card-grafico, .card-meta, .duplo > aside {
 
 main h2 {
   margin: 0 0 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: #222222;
+}
+
+main > h2 {
+  margin: -8px 0 -12px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #EFEFEF;
 }
 
 /* ---------- Resumo: receitas / despesas / saldo ---------- */
@@ -138,32 +207,48 @@ main h2 {
   gap: 24px;
 }
 
-/* bolinha colorida antes do título de cada card */
+.card-resumo {
+  --cor: #3F7D58;
+  --icone: var(--ic-subida);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-resumo.despesa {
+  --cor: #EC5228;
+  --icone: var(--ic-descida);
+}
+
+.card-resumo.saldo {
+  --cor: #EF9651;
+  --icone: var(--ic-carteira);
+}
+
+.card-resumo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 14px 32px rgba(0, 0, 0, 0.2);
+}
+
+.card-resumo h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5b6a62;
+}
+
 .card-resumo h2::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 8px;
-  border-radius: 50%;
-  background: #3F7D58;
-}
-
-.card-resumo.despesa h2::before {
-  background: #EC5228;
-}
-
-.card-resumo.saldo h2::before {
-  background: #EF9651;
+  width: 18px;
+  height: 18px;
+  background: var(--cor);
 }
 
 .card-resumo p {
-  font-size: clamp(1.4rem, 1rem + 1vw, 1.8rem);
+  font-size: clamp(1.3rem, 1rem + 0.8vw, 1.6rem);
   font-weight: 700;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
   min-height: 1.5em; 
   overflow-wrap: anywhere;
 }
-
 
 .card-resumo p:empty::before {
   content: "—";
@@ -178,6 +263,7 @@ main h2 {
   color: #EC5228;
 }
 
+/* o JS pode colocar uma dessas classes no #saldo */
 #saldo.positivo {
   color: #3F7D58;
 }
@@ -210,6 +296,7 @@ main h2 {
   height: 200px;
   border-radius: 50%;
   background: #d6d6d6;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 /* furo no meio da rosca */
@@ -219,6 +306,7 @@ main h2 {
   inset: 24%;
   border-radius: 50%;
   background: #EFEFEF;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 /* sem dados ainda */
@@ -226,9 +314,10 @@ main h2 {
   align-items: center;
   min-height: 200px;
   border: 2px dashed #3F7D58;
-  border-radius: 10px;
+  border-radius: 12px;
   background: rgba(63, 125, 88, 0.08);
   color: #555555;
+  font-size: 0.9rem;
 }
 
 .grafico:empty::before {
@@ -241,7 +330,7 @@ main h2 {
   justify-content: center;
   gap: 8px 20px;
   list-style: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .legenda-grafico li {
@@ -266,7 +355,7 @@ main h2 {
 .legenda-grafico li:nth-child(6n+5) { --cor: #7FB08F; }
 .legenda-grafico li:nth-child(6n+6) { --cor: #F5C08F; }
 
-/* ---------- Meta financeira ---------- */
+/* ---------- Meta financeira (card do dashboard) ---------- */
 .card-meta {
   display: flex;
   flex-direction: column;
@@ -274,7 +363,7 @@ main h2 {
 
 .card-meta #falta {
   margin: auto 0 16px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -287,8 +376,8 @@ main h2 {
 .card-meta #porcentagem, .meta #porcentagem {
   margin: 10px 0 auto;
   font-size: 2.2rem;
-  line-height: 1.2;
   font-weight: 700;
+  line-height: 1.2;
   text-align: right;
   color: #336B49;
 }
@@ -297,12 +386,13 @@ main h2 {
   content: "0%";
 }
 
+/* barra de progresso */
 progress {
   display: block;
   width: 100%;
-  height: 16px;
+  height: 14px;
   border: none;
-  border-radius: 8px;
+  border-radius: 7px;
   overflow: hidden;
   -webkit-appearance: none;
   appearance: none;
@@ -311,18 +401,18 @@ progress {
 
 progress::-webkit-progress-bar {
   background: #d6d6d6;
-  border-radius: 8px;
+  border-radius: 7px;
 }
 
 progress::-webkit-progress-value {
-  background: #EF9651;
-  border-radius: 8px;
+  background: linear-gradient(90deg, #EF9651, #EC5228);
+  border-radius: 7px;
   transition: width 0.4s;
 }
 
 progress::-moz-progress-bar {
-  background: #EF9651;
-  border-radius: 8px;
+  background: linear-gradient(90deg, #EF9651, #EC5228);
+  border-radius: 7px;
 }
 
 progress.completa::-webkit-progress-value {
@@ -333,86 +423,7 @@ progress.completa::-moz-progress-bar {
   background: #3F7D58;
 }
 
-/* ---------- Tabela de movimentações ---------- */
-.card-tabela h2 {
-  margin-bottom: 14px;
-}
-
-.tabela-rolagem {
-  overflow-x: auto;
-  border-radius: 8px;
-}
-
-.card-tabela table {
-  background: none;
-  box-shadow: none;
-  border-radius: 0;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead {
-  background: #336B49;
-  color: #EFEFEF;
-}
-
-th, td {
-  padding: 12px 16px;
-  text-align: left;
-}
-
-th {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-
-tbody tr:nth-child(even) {
-  background: rgba(63, 125, 88, 0.08);
-}
-
-tbody tr:hover {
-  background: rgba(239, 150, 81, 0.2);
-}
-
-.col-valor {
-  text-align: right;
-  white-space: nowrap;
-  font-weight: 600;
-}
-
-td.receita {
-  color: #2F6B47;
-}
-
-td.despesa {
-  color: #C13F1B;
-}
-
-.tabela-rolagem:has(tbody:empty)::after {
-  content: "Nenhuma movimentação ainda";
-  display: block;
-  padding: 20px 16px;
-  color: #555555;
-}
-
 /* ---------- Página Meta financeira ---------- */
-main > h2 {
-  margin: -8px 0 -12px;
-  font-size: 1.3rem;
-  text-transform: none;
-  letter-spacing: 0;
-  color: #EFEFEF;
-}
-
-main > p {
-  color: #EFEFEF;
-}
-
 /* três blocos: valor guardado, valor-alvo, falta guardar */
 .valores {
   display: grid;
@@ -423,18 +434,21 @@ main > p {
 
 .valores > div {
   padding: 16px;
-  border-radius: 10px;
+  border-radius: 12px;
   background: rgba(63, 125, 88, 0.08);
 }
 
 .valores p:first-child {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: #555555;
 }
 
 .valor {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
   min-height: 1.5em;
   overflow-wrap: anywhere;
 }
@@ -448,7 +462,49 @@ main > p {
   color: #3F7D58;
 }
 
-/* botões */
+/* histórico de depósitos + planejamento lado a lado */
+.duplo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.duplo > aside {
+  min-width: 0;
+}
+
+.duplo h2 {
+  margin-bottom: 12px;
+}
+
+.lista {
+  list-style: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.lista li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.lista li:last-child {
+  border-bottom: none;
+}
+
+.lista:empty::before {
+  content: "Nenhum depósito ainda";
+  color: #555555;
+}
+
+#planejamento:empty::before {
+  content: "Defina uma meta para ver o seu planejamento";
+  color: #555555;
+}
+
+/* ---------- Botões ---------- */
 .acoes {
   display: flex;
   flex-wrap: wrap;
@@ -459,16 +515,16 @@ main > p {
 button {
   padding: 10px 20px;
   border: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: 10px;
   font: inherit;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
 }
 
-button:focus-visible {
-  outline: 3px solid #EF9651;
-  outline-offset: 2px;
+button:active {
+  transform: translateY(1px);
 }
 
 .btn-primario {
@@ -503,57 +559,212 @@ button:focus-visible {
   color: #FFFFFF;
 }
 
-/* histórico de depósitos + planejamento lado a lado */
-.duplo {
+/* botão de destaque sobre o fundo verde (ex.: Nova Movimentação) */
+.btn-destaque {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  background: #EF9651;
+  color: #222222;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.btn-destaque::before {
+  --icone: var(--ic-mais);
+  width: 16px;
+  height: 16px;
+}
+
+.btn-destaque:hover {
+  background: #F4A867;
+  transform: translateY(-2px);
+}
+
+/* botões pequenos dentro da tabela (Editar / Excluir) */
+.btn-sm {
+  padding: 5px 12px;
+  border-width: 1.5px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+}
+
+/* ---------- Formulários ---------- */
+main > .barra-acoes {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #444444;
+}
+
+input[type="text"], input[type="number"], input[type="date"], select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 2px solid #cfcfcf;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  color: #222222;
+  font: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:hover, select:hover {
+  border-color: #3F7D58;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #EF9651;
+  box-shadow: 0 0 0 3px rgba(239, 150, 81, 0.35);
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23336B49' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+}
+
+/* filtros da movimentação */
+.filtros {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
 }
 
-.duplo > aside {
-  min-width: 0;
+/* ---------- Tabela de movimentações ---------- */
+.card-tabela h2 {
+  margin-bottom: 14px;
 }
 
-.duplo h2 {
-  margin-bottom: 12px;
+.tabela-rolagem {
+  overflow-x: auto;
+  border-radius: 10px;
 }
 
-.lista {
-  list-style: none;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
 }
 
-.lista li {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid #d6d6d6;
+thead {
+  background: #336B49;
+  color: #EFEFEF;
 }
 
-.lista li:last-child {
-  border-bottom: none;
+th, td {
+  padding: 12px 16px;
+  text-align: left;
 }
 
-.lista:empty::before {
-  content: "Nenhum depósito ainda";
+th {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+td {
+  font-size: 0.9rem;
+}
+
+tbody tr {
+  transition: background 0.15s;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(63, 125, 88, 0.08);
+}
+
+tbody tr:hover {
+  background: rgba(239, 150, 81, 0.2);
+}
+
+.col-valor {
+  text-align: right;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+td.receita {
+  color: #2F6B47;
+}
+
+td.despesa {
+  color: #C13F1B;
+}
+
+.col-acoes {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.col-acoes button + button {
+  margin-left: 6px;
+}
+
+/* tabela vazia: mostra o aviso embaixo do cabeçalho */
+.tabela-rolagem:has(tbody:empty)::after {
+  content: "Nenhuma movimentação ainda";
+  display: block;
+  padding: 20px 16px;
   color: #555555;
-}
-
-#planejamento:empty::before {
-  content: "Defina uma meta para ver o seu planejamento";
-  color: #555555;
+  font-size: 0.9rem;
 }
 
 /* ---------- Rodapé ---------- */
 footer {
-  padding: 16px 20px;
+  padding: 18px 20px;
   text-align: center;
-  font-size: 0.9rem;
-  border-top: 1px solid rgba(239, 239, 239, 0.25);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* ---------- Animação de entrada ---------- */
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+main > * {
+  animation: entrar 0.45s ease both;
+}
+
+main > *:nth-child(2) { animation-delay: 0.05s; }
+main > *:nth-child(3) { animation-delay: 0.1s; }
+main > *:nth-child(4) { animation-delay: 0.15s; }
+main > *:nth-child(5) { animation-delay: 0.2s; }
+main > *:nth-child(6) { animation-delay: 0.25s; }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* ---------- Responsivo ---------- */
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .resumo {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -568,6 +779,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 @media (max-width: 768px) {
   body {
@@ -584,6 +796,7 @@ footer {
     align-items: center;
     gap: 12px 24px;
     padding: 16px 20px;
+    border-right: none;
   }
 
   .logo img {
@@ -601,9 +814,15 @@ footer {
   }
 
   .nav-bar a {
+    gap: 8px;
     padding: 8px 10px;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     border-left: none;
+  }
+
+  .nav-bar a::before {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -624,12 +843,59 @@ footer {
     padding: 18px;
   }
 
+  main > .barra-acoes {
+    padding: 0;
+  }
+
   th, td {
-    padding: 10px 6px;
-    font-size: 0.8rem;
+    padding: 10px 5px;
+    font-size: 0.72rem;
+  }
+
+  th {
+    font-size: 0.65rem;
+    letter-spacing: 0.03em;
   }
 
   td:first-child {
     white-space: nowrap;
+  }
+
+
+  .tabela-rolagem {
+    background:
+      linear-gradient(90deg, #EFEFEF 30%, rgba(239, 239, 239, 0)) left center / 28px 100% no-repeat local,
+      linear-gradient(270deg, #EFEFEF 30%, rgba(239, 239, 239, 0)) right center / 28px 100% no-repeat local,
+      radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0)) left center / 10px 100% no-repeat scroll,
+      radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0)) right center / 10px 100% no-repeat scroll;
+  }
+}
+
+
+@media (max-width: 480px) {
+  main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .card-tabela {
+    padding: 18px 10px;
+  }
+
+  .card-tabela h2 {
+    margin-left: 8px;
+  }
+
+  .nav-bar {
+    gap: 2px;
+  }
+
+  .nav-bar a {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+
+  .nav-bar a::before {
+    display: none;
   }
 }
