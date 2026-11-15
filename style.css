@@ -11,14 +11,19 @@ body {
   flex-direction: row;
   background: #3F7D58;
   color: #EFEFEF;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.5; /* espaçamento das linhas */
 }
 
+/* ---------- Barra lateral ---------- */
 .sidebar {
   width: 240px;
   flex-shrink: 0;
   position: sticky;
   top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   padding: 28px 26px;
@@ -26,21 +31,15 @@ body {
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 8px;
-  color: #EFEFEF;
-  font-weight: 700;
-  font-size: 1.15rem;
-  line-height: 1.2;
-  text-decoration: none;
+  display: block;
+  padding: 0 4px;
 }
 
 .logo img {
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
 }
 
 .sidebar nav {
@@ -52,6 +51,17 @@ body {
   flex-direction: column;
   gap: 6px;
   list-style: none;
+}
+
+.nav-bar a {
+  display: block;
+  padding: 12px 16px;
+  color: #EFEFEF;
+  text-decoration: none;
+  font-weight: 600;
+  border-left: 4px solid transparent;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
 }
 
 .nav-bar a:hover, .nav-bar a:focus-visible {
@@ -66,6 +76,7 @@ body {
   color: #EF9651;
 }
 
+/* ---------- Conteúdo ---------- */
 .conteudo {
   flex: 1;
   min-width: 0;
@@ -99,14 +110,15 @@ main > h1::after {
   background: #EF9651;
 }
 
-main > section, .card-grafico, table {
+/* ---------- Cards ---------- */
+main > section, .card-resumo, .card-grafico, .card-meta, .duplo > aside, table {
   background: #EFEFEF;
   color: #222222;
   border-radius: 14px;
-  box-shadow: rgba(239, 239, 239, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 
-main > section {
+main > section, .card-resumo, .card-grafico, .card-meta, .duplo > aside {
   padding: 24px;
 }
 
@@ -119,15 +131,43 @@ main h2 {
   color: #222222;
 }
 
-.financeiro p {
-  margin: 0 0 18px;
-  font-size: 1.8rem;
-  font-weight: 700;
-  min-height: 1.5em;
+/* ---------- Resumo: receitas / despesas / saldo ---------- */
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-.financeiro p:last-child {
-  margin-bottom: 0;
+/* bolinha colorida antes do título de cada card */
+.card-resumo h2::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #3F7D58;
+}
+
+.card-resumo.despesa h2::before {
+  background: #EC5228;
+}
+
+.card-resumo.saldo h2::before {
+  background: #EF9651;
+}
+
+.card-resumo p {
+  font-size: clamp(1.4rem, 1rem + 1vw, 1.8rem);
+  font-weight: 700;
+  min-height: 1.5em; 
+  overflow-wrap: anywhere;
+}
+
+
+.card-resumo p:empty::before {
+  content: "—";
+  color: #8a8a8a;
 }
 
 #ganhos {
@@ -136,4 +176,460 @@ main h2 {
 
 #perdas {
   color: #EC5228;
+}
+
+#saldo.positivo {
+  color: #3F7D58;
+}
+
+#saldo.negativo {
+  color: #EC5228;
+}
+
+/* ---------- Gráfico + meta lado a lado ---------- */
+.painel {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
+}
+
+.painel > section {
+  min-width: 0;
+}
+
+/* ---------- Gráfico de despesas por categoria ---------- */
+.grafico {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.rosca {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #d6d6d6;
+}
+
+/* furo no meio da rosca */
+.rosca::after {
+  content: "";
+  position: absolute;
+  inset: 24%;
+  border-radius: 50%;
+  background: #EFEFEF;
+}
+
+/* sem dados ainda */
+.grafico:empty {
+  align-items: center;
+  min-height: 200px;
+  border: 2px dashed #3F7D58;
+  border-radius: 10px;
+  background: rgba(63, 125, 88, 0.08);
+  color: #555555;
+}
+
+.grafico:empty::before {
+  content: "Sem despesas para mostrar";
+}
+
+.legenda-grafico {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.legenda-grafico li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legenda-grafico li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cor, #3F7D58);
+}
+
+.legenda-grafico li:nth-child(6n+1) { --cor: #3F7D58; }
+.legenda-grafico li:nth-child(6n+2) { --cor: #EF9651; }
+.legenda-grafico li:nth-child(6n+3) { --cor: #EC5228; }
+.legenda-grafico li:nth-child(6n+4) { --cor: #25503A; }
+.legenda-grafico li:nth-child(6n+5) { --cor: #7FB08F; }
+.legenda-grafico li:nth-child(6n+6) { --cor: #F5C08F; }
+
+/* ---------- Meta financeira ---------- */
+.card-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-meta #falta {
+  margin: auto 0 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card-meta #falta:empty::before {
+  content: "Nenhuma meta definida";
+  font-weight: 400;
+  color: #555555;
+}
+
+.card-meta #porcentagem, .meta #porcentagem {
+  margin: 10px 0 auto;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  font-weight: 700;
+  text-align: right;
+  color: #336B49;
+}
+
+.card-meta #porcentagem:empty::before, .meta #porcentagem:empty::before {
+  content: "0%";
+}
+
+progress {
+  display: block;
+  width: 100%;
+  height: 16px;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #d6d6d6;
+}
+
+progress::-webkit-progress-bar {
+  background: #d6d6d6;
+  border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+  background: #EF9651;
+  border-radius: 8px;
+  transition: width 0.4s;
+}
+
+progress::-moz-progress-bar {
+  background: #EF9651;
+  border-radius: 8px;
+}
+
+progress.completa::-webkit-progress-value {
+  background: #3F7D58;
+}
+
+progress.completa::-moz-progress-bar {
+  background: #3F7D58;
+}
+
+/* ---------- Tabela de movimentações ---------- */
+.card-tabela h2 {
+  margin-bottom: 14px;
+}
+
+.tabela-rolagem {
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.card-tabela table {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #336B49;
+  color: #EFEFEF;
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+th {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(63, 125, 88, 0.08);
+}
+
+tbody tr:hover {
+  background: rgba(239, 150, 81, 0.2);
+}
+
+.col-valor {
+  text-align: right;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+td.receita {
+  color: #2F6B47;
+}
+
+td.despesa {
+  color: #C13F1B;
+}
+
+.tabela-rolagem:has(tbody:empty)::after {
+  content: "Nenhuma movimentação ainda";
+  display: block;
+  padding: 20px 16px;
+  color: #555555;
+}
+
+/* ---------- Página Meta financeira ---------- */
+main > h2 {
+  margin: -8px 0 -12px;
+  font-size: 1.3rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #EFEFEF;
+}
+
+main > p {
+  color: #EFEFEF;
+}
+
+/* três blocos: valor guardado, valor-alvo, falta guardar */
+.valores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 20px 0 24px;
+}
+
+.valores > div {
+  padding: 16px;
+  border-radius: 10px;
+  background: rgba(63, 125, 88, 0.08);
+}
+
+.valores p:first-child {
+  font-size: 0.9rem;
+  color: #555555;
+}
+
+.valor {
+  font-size: 1.6rem;
+  font-weight: 700;
+  min-height: 1.5em;
+  overflow-wrap: anywhere;
+}
+
+.valor:empty::before {
+  content: "—";
+  color: #8a8a8a;
+}
+
+#guardado {
+  color: #3F7D58;
+}
+
+/* botões */
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+button {
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+button:focus-visible {
+  outline: 3px solid #EF9651;
+  outline-offset: 2px;
+}
+
+.btn-primario {
+  background: #336B49;
+  color: #FFFFFF;
+}
+
+.btn-primario:hover {
+  background: #EF9651;
+  color: #222222;
+}
+
+.btn-secundario {
+  background: transparent;
+  border-color: #336B49;
+  color: #336B49;
+}
+
+.btn-secundario:hover {
+  background: #336B49;
+  color: #FFFFFF;
+}
+
+.btn-perigo {
+  background: transparent;
+  border-color: #C13F1B;
+  color: #C13F1B;
+}
+
+.btn-perigo:hover {
+  background: #C13F1B;
+  color: #FFFFFF;
+}
+
+/* histórico de depósitos + planejamento lado a lado */
+.duplo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.duplo > aside {
+  min-width: 0;
+}
+
+.duplo h2 {
+  margin-bottom: 12px;
+}
+
+.lista {
+  list-style: none;
+}
+
+.lista li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.lista li:last-child {
+  border-bottom: none;
+}
+
+.lista:empty::before {
+  content: "Nenhum depósito ainda";
+  color: #555555;
+}
+
+#planejamento:empty::before {
+  content: "Defina uma meta para ver o seu planejamento";
+  color: #555555;
+}
+
+/* ---------- Rodapé ---------- */
+footer {
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(239, 239, 239, 0.25);
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1100px) {
+  .resumo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-resumo.saldo {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1000px) {
+  .painel, .duplo {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    align-self: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+    padding: 16px 20px;
+  }
+
+  .logo img {
+    max-width: 160px;
+  }
+
+  .sidebar nav {
+    margin-top: 0;
+  }
+
+  .nav-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .nav-bar a {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    border-left: none;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 24px 16px 40px;
+  }
+
+  main > h1 {
+    font-size: 1.6rem;
+  }
+
+  .resumo {
+    grid-template-columns: 1fr;
+  }
+
+  main > section, .card-resumo, .card-grafico, .card-meta, .duplo > aside {
+    padding: 18px;
+  }
+
+  th, td {
+    padding: 10px 6px;
+    font-size: 0.8rem;
+  }
+
+  td:first-child {
+    white-space: nowrap;
+  }
 }

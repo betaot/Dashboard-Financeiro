@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="icon" href="images/logo-icon.svg" type="image/logo-icon">
     <link rel="stylesheet" href="style.css">
     <title>Dashboard financeiro</title>
 </head>
 <body>
     <aside class="sidebar">
         <a href="index.html" class="logo">
-            <img src="images/logo.svg" alt="" width="40" height="40">
-            <span>Dashboard<br>Financeiro</span>
+            <img src="images/logo.svg" alt="Insight Dash - Business Intelligence" width="208" height="52">
         </a>
 
         <nav>
@@ -27,45 +26,52 @@
         <main>
             <h1>Dashboard</h1>
 
-            <section class="financeiro">
-                <h2>Receitas</h2>
-                <p id="ganhos"></p>
-                <h2>Despesas</h2>
-                <p id="perdas"></p>
-                <h2>Saldo disponível</h2>
-                <p id="saldo"></p>
-            </section>
-
-            <section class="grafico-dashboard">
-                <article class="card-grafico">
-                    <h2>Despesas por categoria</h2>
-                    <div class="grafico-placeholder" role="img" aria-label="Gráfico de despesas por categoria"></div>
-                    <ul class="legenda-grafico">
-                        <li>Categoria 1</li>
-                        <li>Categoria 2</li>
-                        <li>Categoria 3</li>
-                    </ul>
+            <div class="resumo">
+                <article class="card-resumo receita">
+                    <h2>Receitas</h2>
+                    <p id="ganhos"></p>
                 </article>
-            </section>
+                <article class="card-resumo despesa">
+                    <h2>Despesas</h2>
+                    <p id="perdas"></p>
+                </article>
+                <article class="card-resumo saldo">
+                    <h2>Saldo disponível</h2>
+                    <p id="saldo"></p>
+                </article>
+            </div>
 
-            <section>
-                <h2>Meta financeira</h2>
-                <p id="falta"></p>
-                <progress value="50" max="100"></progress>
-                <p id="porcentagem"></p>
-            </section>
+            <div class="painel">
+                <section class="card-grafico">
+                    <h2>Despesas por categoria</h2>
+                    <div id="grafico" class="grafico" role="img" aria-label="Gráfico de despesas por categoria"></div>
+                    <ul id="legenda-grafico" class="legenda-grafico"></ul>
+                </section>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Descrição</th>
-                        <th>Categoria</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody id="lista-movimentacoes"></tbody>
-            </table>
+                <section class="card-meta">
+                    <h2>Meta financeira</h2>
+                    <p id="falta"></p>
+                    <progress id="progresso" value="0" max="100"></progress>
+                    <p id="porcentagem"></p>
+                </section>
+            </div>
+
+            <section class="card-tabela">
+                <h2>Últimas movimentações</h2>
+                <div class="tabela-rolagem">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th class="col-valor">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-movimentacoes"></tbody>
+                    </table>
+                </div>
+            </section>
         </main>
 
         <footer>
