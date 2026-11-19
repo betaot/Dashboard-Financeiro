@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../images/logo-icon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#3F7D58">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <title>Movimentação</title>
 </head>
@@ -27,14 +31,14 @@
             <h1>Movimentação</h1>
 
             <section class="barra-acoes">
-                <button type="button" id="btn-nova">Nova Movimentação</button>
+                <button type="button" id="btn-nova" class="btn-destaque">Nova Movimentação</button>
             </section>
 
             <section class="filtros">
                 <div>
                     <label for="tipo">Tipo</label>
                     <select name="tipo" id="tipo">
-                        <option value="" disabled selected>Selecione o tipo</option>
+                        <option value="" selected>Todos</option>
                         <option value="receita">Receita</option>
                         <option value="despesa">Despesa</option>
                     </select>
@@ -43,40 +47,156 @@
                 <div>
                     <label for="categoria">Categoria</label>
                     <select name="categoria" id="categoria">
-                        <option value="" disabled selected>Selecione a categoria</option>
-                        <option value="categoria 1">Categoria 1</option>
-                        <option value="categoria 2">Categoria 2</option>
-                        <option value="categoria 3">Categoria 3</option>
+                        <option value="" selected>Todas</option>
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Moradia">Moradia</option>
+                        <option value="Lazer">Lazer</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Educação">Educação</option>
+                        <option value="Outros">Outros</option>
                     </select>
                 </div>
 
                 <div>
                     <label for="periodo">Período</label>
                     <select name="periodo" id="periodo">
-                        <option value="" disabled selected>Selecione o período</option>
+                        <option value="" selected>Todo o período</option>
+                        <option value="hoje">Hoje</option>
+                        <option value="semana">Esta semana</option>
+                        <option value="semana-passada">Semana passada</option>
+                        <option value="mes">Este mês</option>
+                        <option value="mes-passado">Mês passado</option>
+                        <option value="ano">Este ano</option>
                     </select>
                 </div>
             </section>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Descrição</th>
-                        <th>Categoria</th>
-                        <th>Tipo</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="lista-movimentacoes"></tbody>
-            </table>
+            <section class="card-tabela">
+                <h2>Todas as movimentações</h2>
+                <div class="tabela-rolagem">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th class="col-valor">Valor</th>
+                                <th class="col-acoes">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-movimentacoes"></tbody>
+                    </table>
+                </div>
+            </section>
         </main>
 
         <footer>
             <p>Dashboard Financeiro Pessoal</p>
         </footer>
     </div>
+
+    <dialog id="modal-movimentacao" class="modal">
+        <form id="form-movimentacao" method="dialog">
+            <h2>Nova movimentação</h2>
+
+            <div class="modal-corpo">
+                <div class="campos">
+                    <div>
+                        <label for="mov-tipo">Tipo</label>
+                        <select id="mov-tipo" required>
+                            <option value="" disabled selected>Selecione o tipo</option>
+                            <option value="receita">Receita</option>
+                            <option value="despesa">Despesa</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="mov-valor">Valor</label>
+                        <input type="number" id="mov-valor" min="0.01" step="0.01" placeholder="0,00" required>
+                    </div>
+
+                    <div class="campo-largo">
+                        <label for="mov-descricao">Descrição</label>
+                        <input type="text" id="mov-descricao" placeholder="Ex.: Compras no supermercado" required>
+                    </div>
+
+                    <div>
+                        <label for="mov-categoria">Categoria</label>
+                        <select id="mov-categoria" required>
+                            <option value="" disabled selected>Selecione a categoria</option>
+                            <option value="Alimentação">Alimentação</option>
+                            <option value="Transporte">Transporte</option>
+                            <option value="Moradia">Moradia</option>
+                            <option value="Lazer">Lazer</option>
+                            <option value="Saúde">Saúde</option>
+                            <option value="Educação">Educação</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="mov-data">Data</label>
+                        <input type="date" id="mov-data" required>
+                    </div>
+
+                    <div>
+                        <label for="conta-tipo">Conta</label>
+                        <select id="conta-tipo" required>
+                            <option value="" disabled selected>Selecione a conta</option>
+                            <option value="Conta principal">Conta principal</option>
+                            <option value="Poupança">Poupança</option>
+                            <option value="Carteira">Carteira</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="forma-pagamento">Pagamento</label>
+                        <select id="forma-pagamento" required>
+                            <option value="" disabled selected>Forma de pagamento</option>
+                            <option value="Pix">Pix</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                            <option value="Cartão de débito">Cartão de débito</option>
+                            <option value="Cartão de crédito">Cartão de crédito</option>
+                            <option value="Boleto">Boleto</option>
+                        </select>
+                    </div>
+
+                    <div class="campo-largo">
+                        <label for="mov-situacao">Situação</label>
+                        <select id="mov-situacao" required>
+                            <option value="pago" selected>Pago / recebido</option>
+                            <option value="pendente">Pendente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <aside class="resumo-mov">
+                    <h3 class="resumo-titulo">Resumo da movimentação</h3>
+
+                    <span class="selo selo-tipo" id="res-tipo"></span>
+                    <p class="resumo-valor" id="res-valor"></p>
+                    <p class="resumo-desc" id="res-descricao"></p>
+
+                    <dl class="resumo-lista">
+                        <div><dt>Data</dt><dd id="res-data"></dd></div>
+                        <div><dt>Categoria</dt><dd id="res-categoria"></dd></div>
+                        <div><dt>Conta</dt><dd id="res-conta"></dd></div>
+                        <div><dt>Pagamento</dt><dd id="res-pagamento"></dd></div>
+                        <div><dt>Situação</dt><dd><span class="selo selo-situacao" id="res-situacao"></span></dd></div>
+                    </dl>
+
+                    <p class="resumo-aviso" id="res-aviso" aria-live="polite"></p>
+                </aside>
+            </div>
+
+            <div class="acoes">
+                <button type="button" id="btn-cancelar" class="btn-secundario">Cancelar</button>
+                <button type="submit" class="btn-primario">Salvar</button>
+            </div>
+        </form>
+    </dialog>
 
     <script src="../script.js"></script>
 </body>

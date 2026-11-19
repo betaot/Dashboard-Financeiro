@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../images/logo-icon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#3F7D58">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <title>Meta financeira</title>
 </head>
@@ -73,6 +77,92 @@
             <p>Dashboard Financeiro Pessoal</p>
         </footer>
     </div>
+
+    <dialog id="modal-adicionar-meta" class="modal">
+        <form id="form-adicionar-meta" method="dialog">
+            <div class="modal-cab">
+                <h2>Adicionar valor à meta</h2>
+                <p>Guarde mais um pouco e aproxime sua reserva do objetivo.</p>
+            </div>
+
+            <div class="modal-corpo">
+                <div class="campos">
+                    <div class="campo-largo meta-alvo">
+                        <p>Você está adicionando à meta</p>
+                        <strong id="add-meta-nome">Reserva de emergência</strong>
+                    </div>
+
+                    <div>
+                        <label for="add-valor">Valor a adicionar *</label>
+                        <input type="number" id="add-valor" min="0.01" step="0.01" placeholder="0,00" required>
+                        <small class="dica">Informe o valor que deseja guardar nesta contribuição.</small>
+                    </div>
+
+                    <div>
+                        <label for="add-data">Data da contribuição *</label>
+                        <input type="date" id="add-data" required>
+                    </div>
+
+                    <div class="campo-largo">
+                        <label for="add-conta">Conta de origem *</label>
+                        <select id="add-conta" required>
+                            <option value="" disabled selected>Selecione a conta</option>
+                            <option value="Conta principal">Conta principal</option>
+                            <option value="Poupança">Poupança</option>
+                            <option value="Carteira">Carteira</option>
+                        </select>
+                        <small class="dica">O valor será descontado do saldo desta conta.</small>
+                    </div>
+
+                    <div class="campo-largo">
+                        <label for="add-descricao" class="rotulo-linha">Descrição <span>Opcional</span></label>
+                        <input type="text" id="add-descricao" placeholder="Ex.: Valor extra guardado">
+                    </div>
+                </div>
+
+                <aside class="resumo-mov" data-tipo="receita">
+                    <h3 class="resumo-titulo">Resumo da contribuição</h3>
+
+                    <span class="selo selo-confirmar">A confirmar</span>
+                    <p class="resumo-valor" id="res-valor"></p>
+                    <p class="resumo-desc" id="res-descricao"></p>
+
+                    <dl class="resumo-lista">
+                        <div><dt>Conta de origem</dt><dd id="res-conta"></dd></div>
+                        <div><dt>Data</dt><dd id="res-data"></dd></div>
+                    </dl>
+
+                    <h4 class="resumo-subtitulo">Sua meta após confirmar</h4>
+                    <dl class="resumo-lista resumo-lista-solta">
+                        <div><dt>Guardado hoje</dt><dd id="res-guardado"></dd></div>
+                        <div><dt>Novo valor guardado</dt><dd id="res-novo" class="destaque"></dd></div>
+                    </dl>
+
+                    <div class="resumo-progresso">
+                        <div class="resumo-progresso-topo">
+                            <strong id="res-pct"></strong>
+                            <span id="res-pontos"></span>
+                        </div>
+                        <progress id="res-progresso" value="0" max="100"></progress>
+                        <small id="res-detalhe"></small>
+                    </div>
+
+                    <dl class="resumo-lista resumo-lista-solta">
+                        <div><dt>Faltará guardar</dt><dd id="res-falta"></dd></div>
+                    </dl>
+
+                    <p class="resumo-prazo" id="res-prazo"></p>
+                    <p class="resumo-aviso" id="res-aviso" aria-live="polite"></p>
+                </aside>
+            </div>
+
+            <div class="acoes acoes-rodape">
+                <small>A contribuição ficará no histórico da meta.</small>
+                <button type="button" id="btn-cancelar-meta" class="btn-secundario">Cancelar</button>
+                <button type="submit" class="btn-primario">Confirmar contribuição</button>
+            </div>
+        </form>
+    </dialog>
 
     <script src="../script.js"></script>
 </body>
