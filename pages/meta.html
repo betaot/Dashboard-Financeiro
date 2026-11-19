@@ -64,16 +64,16 @@
                     <h1>Nova meta</h1>
                     <p>Tudo começa definindo um objetivo</p>
 
-                    <form method="dialog">
+                    <form method="dialog" id="form_nova_meta">
                         <label for="criando_nova_meta">Nome da meta</label>
                         <input type="text" id="criando_nova_meta" name="nmeta" Placeholder="ex:ferias"required >
                         
                         <label for="valor_inicial_nmeta">Valor inicial</label>
                         <input type="text" id="valor_inicial_nmeta" name="inicio_nmeta" placeholder="Não Obrigatório">
 
-                        <label for="valor_da_meta">Valor alvo</label>
+                        <label for="valor_da_nmeta">Valor alvo</label>
                         <input type="text" id="valor_da_nmeta" name="valor_nmeta" placeholder="R$0,00"required>
-                        <button onclick="nova_meta.close()"type="button" formnovalidate>cancelar</button>
+                        <button onclick="nova_meta.close()" type="button" formnovalidate>cancelar</button>
                         <button>Confirmar</button>
                     </form>
                 </dialog>
@@ -90,7 +90,7 @@
                         
                         <label for="valor_da_meta">Novo valor alvo</label>
                         <input type="text" id="valor_da_meta" name="valor_da_meta"placeholder="R$0,00" required>
-                        <button onclick="editar_meta.close()"type="button" formnovalidate>cancelar</button>
+                        <button onclick="editar_meta.close()" type="button" formnovalidate>cancelar</button>
                         <button>Confirmar</button>
                     </form>
                 </dialog>
@@ -111,7 +111,7 @@
                         <label for="data">Data da remoção</label>
                         <input type="date" id="data" name="data_contribuir" required>
 
-                        <button onclick="retirar.close()"type="button" formnovalidate>cancelar</button>
+                        <button onclick="retirar.close()" type="button" formnovalidate>cancelar</button>
                         <button>Confirmar retirada</button>
                     </form>
                 </dialog>
@@ -131,7 +131,7 @@
 
                         <label for="data">Data da contribuição</label>
                         <input type="date" id="data" name="data_contribuir" required>
-                        <button onclick="adicionar.close()"type="button" formnovalidate>cancelar</button>
+                        <button onclick="adicionar.close()" type="button" formnovalidate>cancelar</button>
                         <button>Confirmar adição</button>
                     </form>
                 </dialog>
