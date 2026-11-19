@@ -1,1 +1,1 @@
-$('#retirar').dialog({ position: 'center' });
+const metas={}

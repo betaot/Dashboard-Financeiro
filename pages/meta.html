@@ -50,8 +50,8 @@
                 <p id="porcentagem"></p>
 
                 <div class="acoes">
-                    <button onclick="nova_meta.showModal() "type="button" id="btn-nmeta" class="botao-novameta">meta</button>
-                    <button onclick="meta.showModal() "type="button" id="btn-editar" class="btn-secundario">Editar meta</button>
+                    <button onclick="nova_meta.showModal() "type="button" id="btn-nmeta" class="botao-novameta">Nova meta</button>
+                    <button onclick="editar_meta.showModal() "type="button" id="btn-editar" class="btn-secundario">Editar meta</button>
                     <button onclick="retirar.showModal() "type="button" id="btn-retirar" class="btn-perigo">Retirar valor</button>
                     <button onclick="adicionar.showModal() "type="button" id="btn-adicionar" class="btn-primario">Adicionar valor</button>
                 </div>
@@ -62,15 +62,32 @@
 
                     <form method="dialog">
                         <label for="criando_nova_meta">Nome da meta</label>
-                        <input type="text" id="criando_nova_meta" name="nmeta" required>
+                        <input type="text" id="criando_nova_meta" name="nmeta" Placeholder="ex:ferias"required >
                         
                         <label for="valor_inicial_nmeta">Valor inicial</label>
                         <input type="text" id="valor_inicial_nmeta" name="inicio_nmeta" placeholder="Não Obrigatório">
 
-                        <label for="valor_da_meta">Valor da meta</label>
-                        <input type="text" id="valor_da_nmeta" name="valor_nmeta" required>
-                    <button onclick="nova_meta.close()"type="button" formnovalidate>cancelar</button>
-                    <button onclick="retirar.close()">Confirmar criação de nova meta</button>
+                        <label for="valor_da_meta">Valor alvo</label>
+                        <input type="text" id="valor_da_nmeta" name="valor_nmeta" placeholder="R$0,00"required>
+                        <button onclick="nova_meta.close()"type="button" formnovalidate>cancelar</button>
+                        <button>Confirmar</button>
+                    </form>
+                </dialog>
+
+                <dialog id="editar_meta" class="dialog">
+                    <h1>Editar meta</h1>
+                    <p>As vezes o plano muda</p>
+                    
+                    <form method="dialog">
+                        <p>Voce esta modificando da meta</p>
+                        <select>
+                        <option value="" disabled selected>Selecione a meta</option>
+                        </select>
+                        
+                        <label for="valor_da_meta">Novo valor alvo</label>
+                        <input type="text" id="valor_da_meta" name="valor_da_meta"placeholder="R$0,00" required>
+                        <button onclick="editar_meta.close()"type="button" formnovalidate>cancelar</button>
+                        <button>Confirmar</button>
                     </form>
                 </dialog>
 
@@ -80,33 +97,38 @@
 
                     <form method="dialog">
                         <p>Voce esta retirando da meta</p>
-                        <p id="nome_meta"></p>
-                    <button onclick="retirar.close()"type="button" formnovalidate>cancelar</button>
-                    <button>Confirmar retirada</button>
+                        <select>
+                        <option value="" disabled selected>Selecione a meta</option>
+                        </select>
+                        
+                        <label for="adicionar_valor">Remover valor</label>
+                        <input type="text" id="remover_valor" name="remover_meta" placeholder="R$0,00" required>
+
+                        <label for="data">Data da remoção</label>
+                        <input type="date" id="data" name="data_contribuir" required>
+
+                        <button onclick="retirar.close()"type="button" formnovalidate>cancelar</button>
+                        <button>Confirmar retirada</button>
                     </form>
                 </dialog>
 
                 <dialog id="adicionar" class="dialog">
-                    <h1>Remover valor da meta</h1>
-                    <p>Alguns gastos sao necessarios</p>
+                    <h1>Adicionar valor na meta</h1>
+                    <p>Se aproximando de seu objetivo</p>
 
                     <form method="dialog">
-                        <p>Voce esta retirando da meta</p>
-                        <p id="nome_meta"></p>
-                    <button onclick="adicionar.close()"type="button" formnovalidate>cancelar</button>
-                    <button onclick="retirar.close()">Confirmar retirada</button>
-                    </form>
-                </dialog>
+                        <p>Voce adicionando na meta</p>
+                        <select>
+                        <option value="" disabled selected>Selecione a meta</option>
+                        </select>
+                        
+                        <label for="adicionar_valor">Adicionar valor</label>
+                        <input type="text" id="adicionar_valor" name="adicionar_meta" placeholder="R$0,00" required>
 
-                <dialog id="meta" class="dialog">
-                    <h1>Remover valor da meta</h1>
-                    <p>Alguns gastos sao necessarios</p>
-
-                    <form method="dialog">
-                        <p>Voce esta retirando da meta</p>
-                        <p id="nome_meta"></p>
-                    <button onclick="meta.close()"type="button" formnovalidate>cancelar</button>
-                    <button onclick="retirar.close()">Confirmar retirada</button>
+                        <label for="data">Data da contribuição</label>
+                        <input type="date" id="data" name="data_contribuir" required>
+                        <button onclick="adicionar.close()"type="button" formnovalidate>cancelar</button>
+                        <button>Confirmar adição</button>
                     </form>
                 </dialog>
             </section>
