@@ -54,85 +54,101 @@
                 <p id="porcentagem"></p>
 
                 <div class="acoes">
-                    <button onclick="nova_meta.showModal() "type="button" id="btn-nmeta" class="botao-novameta">Nova meta</button>
-                    <button onclick="editar_meta.showModal() "type="button" id="btn-editar" class="btn-secundario">Editar meta</button>
-                    <button onclick="retirar.showModal() "type="button" id="btn-retirar" class="btn-perigo">Retirar valor</button>
-                    <button onclick="adicionar.showModal() "type="button" id="btn-adicionar" class="btn-primario">Adicionar valor</button>
+                    <button type="button" id="btn-nmeta" class="btn-destaque" onclick="nova_meta.showModal()">Nova meta</button>
+                    <button type="button" id="btn-editar" class="btn-secundario" onclick="editar_meta.showModal()">Editar meta</button>
+                    <button type="button" id="btn-retirar" class="btn-perigo" onclick="retirar.showModal()">Retirar valor</button>
+                    <button type="button" id="btn-adicionar" class="btn-primario" onclick="modal_adicionar_meta.showModal()">Adicionar valor</button>
                 </div>
 
-                <dialog id="nova_meta" class="dialog">
-                    <h1>Nova meta</h1>
-                    <p>Tudo começa definindo um objetivo</p>
+                <dialog id="nova_meta" class="modal modal-estreito">
+                    <form method="dialog">
+                        <div class="modal-cab">
+                            <h2>Nova meta</h2>
+                            <p>Tudo começa definindo um objetivo</p>
+                        </div>
 
-                    <form method="dialog" id="form_nova_meta">
-                        <label for="criando_nova_meta">Nome da meta</label>
-                        <input type="text" id="criando_nova_meta" name="nmeta" Placeholder="ex:ferias"required >
-                        
-                        <label for="valor_inicial_nmeta">Valor inicial</label>
-                        <input type="text" id="valor_inicial_nmeta" name="inicio_nmeta" placeholder="Não Obrigatório">
+                        <div class="campos">
+                            <div class="campo-largo">
+                                <label for="criando_nova_meta">Nome da meta</label>
+                                <input type="text" id="criando_nova_meta" name="nmeta" placeholder="ex: férias" required>
+                            </div>
 
-                        <label for="valor_da_nmeta">Valor alvo</label>
-                        <input type="text" id="valor_da_nmeta" name="valor_nmeta" placeholder="R$0,00"required>
-                        <button onclick="nova_meta.close()" type="button" formnovalidate>cancelar</button>
-                        <button onclick="nova_meta.close()">Confirmar</button>
+                            <div>
+                                <label for="valor_da_nmeta">Valor alvo</label>
+                                <input type="text" id="valor_da_nmeta" name="valor_nmeta" placeholder="R$0,00" required>
+                            </div>
+
+                            <div>
+                                <label for="valor_inicial_nmeta" class="rotulo-linha">Valor inicial <span>Opcional</span></label>
+                                <input type="text" id="valor_inicial_nmeta" name="inicio_nmeta" placeholder="R$0,00">
+                            </div>
+                        </div>
+
+                        <div class="acoes">
+                            <button type="button" class="btn-secundario" formnovalidate onclick="nova_meta.close()">Cancelar</button>
+                            <button type="submit" class="btn-primario">Confirmar</button>
+                        </div>
                     </form>
                 </dialog>
 
-                <dialog id="editar_meta" class="dialog">
-                    <h1>Editar meta</h1>
-                    <p>As vezes o plano muda</p>
-                    
+                <dialog id="editar_meta" class="modal modal-estreito">
                     <form method="dialog">
-                        <p>Voce esta modificando da meta</p>
-                        <select>
-                        <option value="" disabled selected>Selecione a meta</option>
-                        </select>
-                        
-                        <label for="valor_da_meta">Novo valor alvo</label>
-                        <input type="text" id="valor_da_meta" name="valor_da_meta"placeholder="R$0,00" required>
-                        <button onclick="editar_meta.close()" type="button" formnovalidate>cancelar</button>
-                        <button>Confirmar</button>
+                        <div class="modal-cab">
+                            <h2>Editar meta</h2>
+                            <p>As vezes o plano muda</p>
+                        </div>
+
+                        <div class="campos">
+                            <div class="campo-largo">
+                                <label for="meta_editar">Você está modificando a meta</label>
+                                <select id="meta_editar" name="meta_editar" required>
+                                    <option value="" disabled selected>Selecione a meta</option>
+                                </select>
+                            </div>
+
+                            <div class="campo-largo">
+                                <label for="valor_da_meta">Novo valor alvo</label>
+                                <input type="text" id="valor_da_meta" name="valor_da_meta" placeholder="R$0,00" required>
+                            </div>
+                        </div>
+
+                        <div class="acoes">
+                            <button type="button" class="btn-secundario" formnovalidate onclick="editar_meta.close()">Cancelar</button>
+                            <button type="submit" class="btn-primario">Confirmar</button>
+                        </div>
                     </form>
                 </dialog>
 
-                <dialog id="retirar" class="dialog">
-                    <h1>Remover valor da meta</h1>
-                    <p>Alguns gastos sao necessarios</p>
-
+                <dialog id="retirar" class="modal modal-estreito">
                     <form method="dialog">
-                        <p>Voce esta retirando da meta</p>
-                        <select>
-                        <option value="" disabled selected>Selecione a meta</option>
-                        </select>
-                        
-                        <label for="adicionar_valor">Remover valor</label>
-                        <input type="text" id="remover_valor" name="remover_meta" placeholder="R$0,00" required>
+                        <div class="modal-cab">
+                            <h2>Remover valor da meta</h2>
+                            <p>Alguns gastos são necessários</p>
+                        </div>
 
-                        <label for="data">Data da remoção</label>
-                        <input type="date" id="data" name="data_contribuir" required>
+                        <div class="campos">
+                            <div class="campo-largo">
+                                <label for="meta_retirar">Você está retirando da meta</label>
+                                <select id="meta_retirar" name="meta_retirar" required>
+                                    <option value="" disabled selected>Selecione a meta</option>
+                                </select>
+                            </div>
 
-                        <button onclick="retirar.close()" type="button" formnovalidate>cancelar</button>
-                        <button>Confirmar retirada</button>
-                    </form>
-                </dialog>
+                            <div>
+                                <label for="remover_valor">Remover valor</label>
+                                <input type="text" id="remover_valor" name="remover_meta" placeholder="R$0,00" required>
+                            </div>
 
-                <dialog id="adicionar" class="dialog">
-                    <h1>Adicionar valor na meta</h1>
-                    <p>Se aproximando de seu objetivo</p>
+                            <div>
+                                <label for="data_retirada">Data da remoção</label>
+                                <input type="date" id="data_retirada" name="data_retirada" required>
+                            </div>
+                        </div>
 
-                    <form method="dialog">
-                        <p>Voce adicionando na meta</p>
-                        <select>
-                        <option value="" disabled selected>Selecione a meta</option>
-                        </select>
-                        
-                        <label for="adicionar_valor">Adicionar valor</label>
-                        <input type="text" id="adicionar_valor" name="adicionar_meta" placeholder="R$0,00" required>
-
-                        <label for="data">Data da contribuição</label>
-                        <input type="date" id="data" name="data_contribuir" required>
-                        <button onclick="adicionar.close()" type="button" formnovalidate>cancelar</button>
-                        <button>Confirmar adição</button>
+                        <div class="acoes">
+                            <button type="button" class="btn-secundario" formnovalidate onclick="retirar.close()">Cancelar</button>
+                            <button type="submit" class="btn-perigo-solido">Confirmar retirada</button>
+                        </div>
                     </form>
                 </dialog>
             </section>
@@ -155,7 +171,7 @@
         </footer>
     </div>
 
-    <dialog id="modal-adicionar-meta" class="modal">
+    <dialog id="modal_adicionar_meta" class="modal">
         <form id="form-adicionar-meta" method="dialog">
             <div class="modal-cab">
                 <h2>Adicionar valor à meta</h2>
@@ -235,12 +251,13 @@
 
             <div class="acoes acoes-rodape">
                 <small>A contribuição ficará no histórico da meta.</small>
-                <button type="button" id="btn-cancelar-meta" class="btn-secundario">Cancelar</button>
+                <button type="button" id="btn-cancelar-meta" class="btn-secundario" onclick="modal_adicionar_meta.close()">Cancelar</button>
                 <button type="submit" class="btn-primario">Confirmar contribuição</button>
             </div>
         </form>
     </dialog>
 
+    <script src="../modal-meta.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>
