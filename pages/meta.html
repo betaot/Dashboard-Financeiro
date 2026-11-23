@@ -61,7 +61,7 @@
                 </div>
 
                 <dialog id="nova_meta" class="modal modal-estreito">
-                    <form method="dialog">
+                    <form method="dialog" id="form_nova_meta">
                         <div class="modal-cab">
                             <h2>Nova meta</h2>
                             <p>Tudo começa definindo um objetivo</p>
@@ -92,7 +92,7 @@
                 </dialog>
 
                 <dialog id="editar_meta" class="modal modal-estreito">
-                    <form method="dialog">
+                    <form method="dialog" id="form_editar_meta">
                         <div class="modal-cab">
                             <h2>Editar meta</h2>
                             <p>As vezes o plano muda</p>
@@ -101,7 +101,7 @@
                         <div class="campos">
                             <div class="campo-largo">
                                 <label for="meta_editar">Você está modificando a meta</label>
-                                <select id="meta_editar" name="meta_editar" required>
+                                <select id="meta_editar" class="meta" name="meta_editar" required>
                                     <option value="" disabled selected>Selecione a meta</option>
                                 </select>
                             </div>
@@ -120,7 +120,7 @@
                 </dialog>
 
                 <dialog id="retirar" class="modal modal-estreito">
-                    <form method="dialog">
+                    <form method="dialog" id="form_retirar">
                         <div class="modal-cab">
                             <h2>Remover valor da meta</h2>
                             <p>Alguns gastos são necessários</p>
@@ -129,7 +129,7 @@
                         <div class="campos">
                             <div class="campo-largo">
                                 <label for="meta_retirar">Você está retirando da meta</label>
-                                <select id="meta_retirar" name="meta_retirar" required>
+                                <select id="meta_retirar" name="meta_" class="meta" required>
                                     <option value="" disabled selected>Selecione a meta</option>
                                 </select>
                             </div>
