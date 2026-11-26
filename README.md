@@ -8,7 +8,7 @@ O projeto usa apenas HTML, CSS e JavaScript, sem frameworks. Os dados ficam salv
 
 O projeto pode ser aberto direto no navegador pelo link da Vercel, sem instalar nada:
 
-**Link:** COLE_AQUI_O_LINK_DA_VERCEL
+**Link:** https://insight-dash-nu.vercel.app/
 
 ## Funcionalidades
 
